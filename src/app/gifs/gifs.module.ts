@@ -8,6 +8,9 @@ import { GifsPageComponent } from './gifs-page/gifs-page.component';
   declarations: [
     GifsPageComponent
   ],
+  exports:[
+    GifsPageComponent
+  ],
   imports: [
     CommonModule
   ]
