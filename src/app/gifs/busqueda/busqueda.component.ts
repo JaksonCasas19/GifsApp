@@ -16,9 +16,14 @@ export class BusquedaComponent  {
   buscar(){ 
     const valor = this.txtBuscar.nativeElement.value;
 
+    //Si pulsa enter no retorna nada
+    if(valor.trim().length === 0){
+      return;
+    }
     //Llamar la funcion buscarGifs desde el servicio
     this.gifsService.buscarGifs(valor);
     
+    //Limpiar el input buscador
     this.txtBuscar.nativeElement.value = '';
   }
 
