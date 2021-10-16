@@ -7,9 +7,9 @@ import { GifsService } from '../services/gifs.service';
   styleUrls: ['./resultados.component.css']
 })
 export class ResultadosComponent{
-  
+
   get resultados(){
-    return this.gifsService.resultado;
+    return this.gifsService.resultados;
   }
   constructor(private gifsService: GifsService) { }
 
