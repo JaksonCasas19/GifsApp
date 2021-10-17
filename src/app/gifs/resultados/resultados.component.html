@@ -1,5 +1,10 @@
 <div class="row">
-    <div *ngFor="let item of resultados"
+
+  <ngx-skeleton-loader *ngIf="load()" count="8" appearance="" [theme]="{ width: '250px', height: '180px', margin:'5px' }">
+  </ngx-skeleton-loader>
+
+  
+  <div *ngFor="let item of resultados"
     class="col-md-4 col-sm-6">
       <div class="card">
         <img [src]="item.images.downsized_medium.url" 
@@ -12,7 +17,6 @@
         </div>
       </div>
     </div>
-</div>
 
-<!--<ngx-skeleton-loader *ngIf="loader" count="10" appearance="" [theme]="{ width: '80px', height: '80px', margin:'5px' }">
-</ngx-skeleton-loader>-->
+   
+</div>

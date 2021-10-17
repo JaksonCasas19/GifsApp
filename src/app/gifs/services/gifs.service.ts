@@ -10,6 +10,7 @@ export class GifsService {
     private servicioUrl:string = 'https://api.giphy.com/v1/gifs';
     private _historial: string[] = [];
 
+    public loader:boolean = true;
 
     //TODO: Cambiar any por su tipo 
     public resultados: Gif[] = [];
@@ -19,10 +20,14 @@ export class GifsService {
     }
 
     constructor(private http:HttpClient){
+
       this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
-
       this.resultados = JSON.parse(localStorage.getItem('resultados')!) || [];
-
+      this.loader = JSON.parse(localStorage.getItem('loader')!);
+      if(this.loader == null){
+        this.loader = true;
+      } 
+      console.log(this.loader);
       //Resultados
       /*if(localStorage.getItem('historial')){
         this._historial = JSON.parse(localStorage.getItem('historial')!);
@@ -31,12 +36,12 @@ export class GifsService {
 
     buscarGifs(query:string = ''){
       query = query.trim().toLowerCase(); //Convertir a minuscula
-
+      
       //Si el query no existe lo incluye
       if(!this._historial.includes(query)){
         this._historial.unshift(query); //unshift->La ultima aparece al principio
         this._historial = this._historial.splice(0,10); //Corta la cantidad de array[]
-
+      
       //Almacen en el local Storage
         localStorage.setItem('historial', JSON.stringify(this._historial));  //stringify -> convertir object a string
       }
@@ -54,9 +59,11 @@ export class GifsService {
       .subscribe((resp) => {
         console.log(resp.data);
         this.resultados = resp.data;
-
+        this.loader = false;
+        console.log("Cargo aqui");
         localStorage.setItem('resultados', JSON.stringify(this.resultados));
-  
+        localStorage.setItem('loader',JSON.stringify(this.loader));
+        
       });
       //console.log(this._historial);
     }

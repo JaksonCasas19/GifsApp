@@ -7,6 +7,12 @@ import { GifsService } from '../services/gifs.service';
   styleUrls: ['./resultados.component.css']
 })
 export class ResultadosComponent{
+  
+  /*loader:Boolean = true;*/
+
+  load():boolean{
+    return this.gifsService.loader;
+  }
 
   get resultados(){
     return this.gifsService.resultados;
