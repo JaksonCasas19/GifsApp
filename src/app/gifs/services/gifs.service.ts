@@ -9,6 +9,8 @@ export class GifsService {
     private apiKey:string = 'XCkB0kXpgmV52gzyviWMbWxKrEONcG0T';
     private servicioUrl:string = 'https://api.giphy.com/v1/gifs';
     private _historial: string[] = [];
+
+
     //TODO: Cambiar any por su tipo 
     public resultados: Gif[] = [];
 
@@ -54,6 +56,7 @@ export class GifsService {
         this.resultados = resp.data;
 
         localStorage.setItem('resultados', JSON.stringify(this.resultados));
+  
       });
       //console.log(this._historial);
     }
